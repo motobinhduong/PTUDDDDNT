@@ -1,20 +1,125 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, TextInput, Button, Image, Modal } from 'react-native';
 
-export default function App() {
+const App = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  //1
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const handleLogin = () => {
+    // TODO: Add login logic here (e.g., validation, authentication)
+    setIsModalVisible(true);
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      {/* Background image */}
+      <Image
+        source={require('./assets/logoreact.png')} // Replace with your image path
+        style={styles.backgroundImage}
+        resizeMode="stretch" // Stretch to fill the container
+      />
+
+      {/* Content container with centered elements */}
+      <View style={styles.contentContainer}>
+        {/* Centered Pokémon logo */}
+        <Image
+          source={require('./assets/logoreact.png')} // Replace with your logo path
+          style={styles.pokemonLogo}
+        />
+
+        <Text style={styles.title}>Pokémon</Text>
+        <Text style={styles.subTitle}>REGISTER</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="USERNAME"
+          value={username}
+          onChangeText={setUsername}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="PASSWORD"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+        />
+        <Button title="LOGIN" onPress={handleLogin} />
+      </View>
+       
+      <Modal
+        animationType="fade"
+        visible={isModalVisible}
+        onRequestClose={() => setIsModalVisible(false)}
+        style={styles.modal}>
+        <View style={styles.modalContent}>
+          <Text style={styles.modalText}>Thông tin đăng nhập:</Text>
+          <Text style={styles.modalText}>Tên người dùng: {username}</Text>
+          <Text style={styles.modalText}>Mật khẩu: {password}</Text>
+        </View>
+      </Modal>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
+  },
+  backgroundImage: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+  },
+  contentContainer: {
+    flex: 1, // Allow content to grow with available space
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  pokemonLogo: {
+    marginBottom: 20, // Add spacing below the logo
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color:"#FFFFFF" 
+  },
+  subTitle: {
+    fontSize: 18,
+    fontWeight: 'normal',
+    textAlign: 'right',
+    color:"#FFFFFF"
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 10,
+    margin: 10,
+    color:"#FFFFFF"
+  },
+
+  modal: {
+    position: 'absolute',
+    bottom: '10%',
+    left: '10%',
+    width: '80%',
+    height: 200,
+    backgroundColor: 'white',
+    padding: 20,
+  },
+  modalContent: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalText: {
+    fontSize: 16,
+    marginBottom: 5,
   },
 });
+
+export default App;
