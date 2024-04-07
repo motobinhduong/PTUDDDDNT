@@ -8,24 +8,22 @@ const App = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleLogin = () => {
-    // TODO: Add login logic here (e.g., validation, authentication)
     setIsModalVisible(true);
   };
 
   return (
     <View style={styles.container}>
-      {/* Background image */}
+      
       <Image
-        source={require('./assets/logoreact.png')} // Replace with your image path
+        source={require('./assets/logoreact.png')} 
         style={styles.backgroundImage}
-        resizeMode="stretch" // Stretch to fill the container
+        resizeMode="stretch"  
       />
 
-      {/* Content container with centered elements */}
+      
       <View style={styles.contentContainer}>
-        {/* Centered Pokémon logo */}
         <Image
-          source={require('./assets/logoreact.png')} // Replace with your logo path
+          source={require('./assets/logoreact.png')} 
           style={styles.pokemonLogo}
         />
 
@@ -74,12 +72,12 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   contentContainer: {
-    flex: 1, // Allow content to grow with available space
+    flex: 1, 
     justifyContent: 'center',
     alignItems: 'center',
   },
   pokemonLogo: {
-    marginBottom: 20, // Add spacing below the logo
+    marginBottom: 20, 
   },
   title: {
     fontSize: 24,
